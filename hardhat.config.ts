@@ -2,6 +2,8 @@ import '@nomiclabs/hardhat-ethers'
 import '@nomiclabs/hardhat-etherscan'
 import '@nomiclabs/hardhat-waffle'
 import 'hardhat-typechain'
+import dotenv from 'dotenv'
+dotenv.config()
 
 export default {
   networks: {
@@ -13,6 +15,14 @@ export default {
     },
     ropsten: {
       url: `https://ropsten.infura.io/v3/${process.env.INFURA_API_KEY}`,
+    },
+    titan: {
+      url: `https://rpc.titan.tokamak.network`,
+      chainId: 55004,
+    },
+    titanGoerli: {
+      url: `https://rpc.titan-goerli.tokamak.network`,
+      chainId: 5050,
     },
     rinkeby: {
       url: `https://rinkeby.infura.io/v3/${process.env.INFURA_API_KEY}`,
@@ -41,11 +51,32 @@ export default {
     polygon: {
       url: `https://polygon-mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
     },
+    bnb: {
+      url: `https://bsc-dataseed.binance.org/`,
+    },
   },
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
     apiKey: process.env.ETHERSCAN_API_KEY,
+    customChains: [
+      {
+        network: 'titan-goerli',
+        chainId: 5050,
+        urls: {
+          apiURL: 'https://explorer.titan-goerli.tokamak.network/api',
+          browserURL: 'https://explorer.titan-goerli.tokamak.network',
+        },
+      },
+      {
+        network: 'titan',
+        chainId: 55004,
+        urls: {
+          apiURL: 'https://explorer.titan.tokamak.network/api',
+          browserURL: 'https://explorer.titan.tokamak.network',
+        },
+      },
+    ],
   },
   solidity: {
     version: '0.8.12',
