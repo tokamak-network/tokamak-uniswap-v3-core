@@ -2,7 +2,9 @@
 pragma solidity ^0.8.0;
 
 import {FullMath} from './FullMath.sol';
+import {FullMath2} from './FullMath2.sol';
 import {FixedPoint128} from './FixedPoint128.sol';
+import 'hardhat/console.sol';
 
 /// @title Position
 /// @notice Positions represent an owner address' liquidity between a lower and upper tick boundary
@@ -63,9 +65,15 @@ library Position {
         // calculate accumulated fees. overflow in the subtraction of fee growth is expected
         uint128 tokensOwed0;
         uint128 tokensOwed1;
+        console.log('update Position');
+        console.log('feeGrowthInside0X128', feeGrowthInside0X128);
+        console.log('self.feeGrowthInside0LastX128', _self.feeGrowthInside0LastX128);
+        console.log('feeGrowthInside1X128', feeGrowthInside1X128);
+        console.log('self.feeGrowthInside1LastX128', _self.feeGrowthInside1LastX128);
+
         unchecked {
             tokensOwed0 = uint128(
-                FullMath.mulDiv(
+                FullMath2.mulDiv(
                     feeGrowthInside0X128 - _self.feeGrowthInside0LastX128,
                     _self.liquidity,
                     FixedPoint128.Q128

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity ^0.8.0;
-
+import 'hardhat/console.sol';
 import {SafeCast} from './SafeCast.sol';
 
 import {TickMath} from './TickMath.sol';
@@ -67,6 +67,10 @@ library Tick {
         uint256 feeGrowthGlobal1X128
     ) internal view returns (uint256 feeGrowthInside0X128, uint256 feeGrowthInside1X128) {
         unchecked {
+            console.log('getFeeGrowthInside--');
+            console.logInt(tickLower);
+            console.logInt(tickCurrent);
+            console.logInt(tickUpper);
             Info storage lower = self[tickLower];
             Info storage upper = self[tickUpper];
 
@@ -91,7 +95,12 @@ library Tick {
                 feeGrowthAbove0X128 = feeGrowthGlobal0X128 - upper.feeGrowthOutside0X128;
                 feeGrowthAbove1X128 = feeGrowthGlobal1X128 - upper.feeGrowthOutside1X128;
             }
-
+            console.log('feeGrowthGlobal0X128:', feeGrowthGlobal0X128);
+            console.log('feeGrowthBelow0X128', feeGrowthBelow0X128);
+            console.log('feeGrowthAbove0X128', feeGrowthAbove0X128);
+            console.log('feeGrowthGlobal1X128', feeGrowthGlobal1X128);
+            console.log('feeGrowthBelow1X128', feeGrowthBelow1X128);
+            console.log('feeGrowthAbove1X128', feeGrowthAbove1X128);
             feeGrowthInside0X128 = feeGrowthGlobal0X128 - feeGrowthBelow0X128 - feeGrowthAbove0X128;
             feeGrowthInside1X128 = feeGrowthGlobal1X128 - feeGrowthBelow1X128 - feeGrowthAbove1X128;
         }
@@ -145,6 +154,11 @@ library Tick {
             }
             info.initialized = true;
         }
+        console.log('ticks update!');
+        console.logInt(tick);
+        console.logInt(tickCurrent);
+        console.log('info.feeGrowthOutside0X128', info.feeGrowthOutside0X128);
+        console.log('info.feeGrowthOutside1X128', info.feeGrowthOutside1X128);
 
         info.liquidityGross = liquidityGrossAfter;
 
