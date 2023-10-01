@@ -14,20 +14,20 @@ const main = async () => {
       constructorArguments: [],
     })
   } catch (e) {
-    if (e.meesage.toLowerCase().includes('already verified')) {
+    if (e.message.toLowerCase().includes('already verified')) {
       console.log('Contract already verified')
     } else {
       console.log(e)
     }
   }
-  contractAddress = data['UniswapV3PoolSwapTest.sol']
+  contractAddress = data['UniswapV3PoolSwapTest']
   try {
     await run('verify:verify', {
       address: contractAddress,
       constructorArguments: [],
     })
   } catch (e) {
-    if (e.meesage.toLowerCase().includes('already verified')) {
+    if (e.message.toLowerCase().includes('already verified')) {
       console.log('Contract already verified')
     } else {
       console.log(e)
