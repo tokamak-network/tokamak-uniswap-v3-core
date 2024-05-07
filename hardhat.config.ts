@@ -12,12 +12,10 @@ export default {
     },
     thanossepolia: {
       url: `https://rpc.thanos-sepolia-test.tokamak.network`,
-      accounts: [`${process.env.PRIVATE_KEY}`],
       chainId: 111551118080,
     },
     titansepolia:{
       url: `https://rpc.titan-sepolia.tokamak.network`,
-      accounts: [`${process.env.PRIVATE_KEY}`],
       chainId: 55007
     },
     mainnet: {
@@ -60,7 +58,6 @@ export default {
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
-    apiKey: process.env.ETHERSCAN_API_KEY,
     customChains: [
       {
         network: 'thanossepolia',
