@@ -58,9 +58,7 @@ export default {
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
-    apiKey: {
-      thanossepolia: 1
-    },
+    apiKey: process.env.ETHERSCAN_API_KEY,
     customChains: [
       {
         network: 'thanossepolia',
